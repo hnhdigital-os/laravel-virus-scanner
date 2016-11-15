@@ -10,7 +10,7 @@ Provides a Laravel console command wrapper around clamscan.
 
 Install via composer:
 
-`composer require-dev bluora/laravel-virus-scan dev-master`
+`composer require-dev bluora/laravel-virus-scanner dev-master`
 
 Add it to your available console commands in app/Console/Kernel.php:
 
@@ -22,6 +22,6 @@ Add it to your available console commands in app/Console/Kernel.php:
      */
     protected $commands = [
       ...
-      \Bluora\LaravelVirusScan\VirusScanCommand::class,
+      \Bluora\LaravelVirusScanner\VirusScannerCommand::class,
     ];
 ```
