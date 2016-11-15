@@ -50,10 +50,10 @@ class VirusScannerCommand extends Command
             list($file_path, $virus) = explode(': ', $line);
             $file_pathinfo = pathinfo($file_path);
 
-
             $path_exists = true;
             $counter = 0;
 
+            // Keep creating a file name until we find a file that does not exist.
             while ($path_exists) {
                 $new_file_path = $file_pathinfo['dirname'].'/.virus.'.$file_pathinfo['basename'].($counter > 0 ? '.'.$counter : '');
                 $path_exists = file_exists($new_file_path);
@@ -62,7 +62,10 @@ class VirusScannerCommand extends Command
 
             $this->line(sprintf(' * %s', $file_path));
 
-            rename($file_path, $new_file_path);
+            // Check it exists before renaming.
+            if (file_exists($file_path)) {
+                rename($file_path, $new_file_path);
+            }
         }
 
         if (count($output)) {
