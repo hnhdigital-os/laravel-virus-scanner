@@ -34,6 +34,7 @@ class VirusScannerCommand extends Command
         $command = sprintf('clamscan %s --no-summary -r --infected %s', $path, $exclude_filename);
         $output = [];
         $return_var  = 0;
+
         exec($command, $output, $return_var);
 
         // Process each file by renaming and logging it.
@@ -46,7 +47,7 @@ class VirusScannerCommand extends Command
             $counter = 0;
 
             while ($path_exists) {
-                $new_file_path = $file_pathinfo['dirname'].'/.virus.'.$file_pathinfo['dirname'].($counter > 0 ? '.'.$counter : '');
+                $new_file_path = $file_pathinfo['dirname'].'/.virus.'.$file_pathinfo['basename'].($counter > 0 ? '.'.$counter : '');
                 $path_exists = file_exists($new_file_path);
                 $counter++;
             }
