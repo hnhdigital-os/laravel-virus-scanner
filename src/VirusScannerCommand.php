@@ -1,12 +1,12 @@
 <?php
 
-namespace Bluora\LaravelVirusScan;
+namespace Bluora\LaravelVirusScanner;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Yaml;
 
-class VirusScanCommand extends Command
+class VirusScannerCommand extends Command
 {
     /**
      * The name and signature of the console command.
