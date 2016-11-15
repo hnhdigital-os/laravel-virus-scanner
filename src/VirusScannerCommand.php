@@ -30,8 +30,7 @@ class VirusScannerCommand extends Command
     public function handle()
     {
         $path = realpath($this->argument('path'));
-        $exclude_filename = is_dir($path) ? "--exclude='\.virus\.'" : '';
-        $command = sprintf('clamscan %s --no-summary -r --infected %s 2> /dev/null', $path, $exclude_filename);
+        $command = sprintf('clamscan %s --no-summary -r --infected %s 2> /dev/null', $path, "--exclude='\.virus\.'");
         $output = [];
         $return_var  = 0;
 
