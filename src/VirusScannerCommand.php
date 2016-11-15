@@ -31,17 +31,25 @@ class VirusScannerCommand extends Command
     {
         $path = realpath($this->argument('path'));
         $exclude_filename = is_dir($path) ? "--exclude='\.virus\.'" : '';
-        $command = sprintf('clamscan %s --no-summary -r --infected %s', $path, $exclude_filename);
+        $command = sprintf('clamscan %s --no-summary -r --infected %s 2> /dev/null', $path, $exclude_filename);
         $output = [];
         $return_var  = 0;
 
         exec($command, $output, $return_var);
+
+        if (count($output)) {
+            $this->error('Viruses have been found!');
+            $this->line('');
+            $this->line(' Quarantining...');
+            $this->line('');
+        }
 
         // Process each file by renaming and logging it.
         // We convert it to a dot file (hidden) 
         foreach ($output as $line) {
             list($file_path, $virus) = explode(': ', $line);
             $file_pathinfo = pathinfo($file_path);
+
 
             $path_exists = true;
             $counter = 0;
@@ -52,7 +60,13 @@ class VirusScannerCommand extends Command
                 $counter++;
             }
 
-            rename($file_path, $new_file_path);
+            $this->line(sprintf(' * %s', $file_path));
+
+            //rename($file_path, $new_file_path);
+        }
+
+        if (count($output)) {
+            $this->line('');
         }
     }
 }
