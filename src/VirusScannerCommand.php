@@ -62,7 +62,7 @@ class VirusScannerCommand extends Command
 
             $this->line(sprintf(' * %s', $file_path));
 
-            //rename($file_path, $new_file_path);
+            rename($file_path, $new_file_path);
         }
 
         if (count($output)) {
