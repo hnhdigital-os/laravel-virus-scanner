@@ -3,8 +3,6 @@
 namespace Bluora\LaravelVirusScanner;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Yaml\Exception\ParseException;
-use Symfony\Component\Yaml\Yaml;
 
 class VirusScannerCommand extends Command
 {
@@ -13,7 +11,7 @@ class VirusScannerCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'virus:scan {path} {--config-file=}';
+    protected $signature = 'virus:scan {path}';
 
     /**
      * The console command description.
@@ -32,7 +30,7 @@ class VirusScannerCommand extends Command
         $path = realpath($this->argument('path'));
         $command = sprintf('clamscan %s --no-summary -r --infected %s 2> /dev/null', $path, "--exclude='\.virus\.'");
         $output = [];
-        $return_var  = 0;
+        $return_var = 0;
 
         exec($command, $output, $return_var);
 
@@ -44,9 +42,10 @@ class VirusScannerCommand extends Command
         }
 
         // Process each file by renaming and logging it.
-        // We convert it to a dot file (hidden) 
+        // We convert it to a dot file (hidden)
         foreach ($output as $line) {
             list($file_path, $virus) = explode(': ', $line);
+            $this->line(sprintf('Found %s in %s.', $virus, $file_path));
             $file_pathinfo = pathinfo($file_path);
 
             $path_exists = true;
