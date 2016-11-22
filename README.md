@@ -1,4 +1,6 @@
-# Laravel Virus Scan
+# Laravel Virus Scanner
+
+This package has been developed by H&H|Digital, an Australian botique developer. Visit us at [hnh.digital](http://hnh.digital).
 
 [![Latest Stable Version](https://poser.pugx.org/bluora/laravel-virus-scanner/v/stable.svg)](https://packagist.org/packages/bluora/laravel-virus-scanner) [![Total Downloads](https://poser.pugx.org/bluora/laravel-virus-scanner/downloads.svg)](https://packagist.org/packages/bluora/laravel-virus-scanner) [![Latest Unstable Version](https://poser.pugx.org/bluora/laravel-virus-scanner/v/unstable.svg)](https://packagist.org/packages/bluora/laravel-virus-scanner) [![License](https://poser.pugx.org/bluora/laravel-virus-scanner/license.svg)](https://packagist.org/packages/bluora/laravel-virus-scanner)
 
@@ -8,11 +10,11 @@ Provides a Laravel console command wrapper around clamscan.
 
 ## Installation
 
-Install via composer:
+Via composer:
 
-`composer require-dev bluora/laravel-virus-scanner dev-master`
+`$ composer require-dev bluora/laravel-virus-scanner dev-master`
 
-Add it to your available console commands in app/Console/Kernel.php:
+Enable the console command by editing app/Console/Kernel.php:
 
 ```php
     /**
@@ -25,3 +27,26 @@ Add it to your available console commands in app/Console/Kernel.php:
       \Bluora\LaravelVirusScanner\VirusScannerCommand::class,
     ];
 ```
+
+## Usage
+
+Run the console command using the following:
+
+`# php artisan virus:scan storage`
+
+The path can be a file or a folder. 
+
+Any infected files are renamed by prepending '.virus.'.
+
+## Contributing
+
+Please see [CONTRIBUTING](https://github.com/bluora/laravel-virus-scanner/blob/master/CONTRIBUTING.md) for details.
+
+## Credits
+
+* [Rocco Howard](https://github.com/therocis)
+* [All Contributors](https://github.com/bluora/laravel-virus-scanner/contributors)
+
+## License
+
+The MIT License (MIT). Please see [License File](https://github.com/bluora/laravel-virus-scanner/blob/master/LICENSE) for more information.
