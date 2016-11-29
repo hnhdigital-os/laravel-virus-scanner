@@ -8,7 +8,7 @@ This package has been developed by H&H|Digital, an Australian botique developer.
 
 Provides a Laravel console command wrapper around clamscan.
 
-## Installation
+## Install
 
 Via composer:
 
