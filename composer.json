@@ -1,5 +1,5 @@
 {
-    "name": "bluora/laravel-virus-scanner",
+    "name": "hnhdigital-os/laravel-virus-scanner",
     "description": "Provides a Laravel console command wrapper for clamscan.",
     "keywords": ["laravel", "clamscan", "clamav", "command"],
     "license": "MIT",
